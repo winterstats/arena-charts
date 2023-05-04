@@ -1,0 +1,46 @@
+﻿body {
+    background: #1a1a1a;
+}
+
+img{
+    width: inherit;
+}
+
+.class-icon {
+    align-content: center;
+    width:32px;
+    margin-bottom: 10px;
+}
+
+.spec-icon {
+    align-content: center;
+    width:32px;
+    margin-bottom: 10px;
+}
+.class-column {
+    align-content: center;
+    padding: 5px;
+    margin: 0;
+}
+
+.border-line {
+    border-bottom: 3px solid;
+}
+
+.border-dash {
+    border-bottom: 3px dashed;
+}
+
+.border-dot {
+    border-bottom: 3px dotted;
+}
+
+.border-dashdot {
+    border-bottom: 1px dashed;
+    margin-bottom: .9em;
+}
+
+.inactive {
+    filter: grayscale(100%);
+    border-bottom: 3px solid rgba(0,0,0,0);
+}

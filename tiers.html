@@ -6,7 +6,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-
+        .tier-list-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .tier-list-title {
+            text-align: center;
+            color: whitesmoke;
+            font-size: 28px;
+            margin: 2px;
+        }
+        .tier-list-column {
+            padding: 20px
+        }
         .row-tier {
             text-align: center;
             color: whitesmoke;
@@ -58,7 +71,7 @@
     </style>
 </head>
 <body>
-<div id="tier-list-container">
+<div id="tier-list-container" class="container-fluid col-12">
 </div>
 <script type="module" src="js/tierList.js"></script>
 </body>

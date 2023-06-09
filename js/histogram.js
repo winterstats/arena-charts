@@ -2,7 +2,8 @@
 import {createChart} from "./chart.js";
 import {createDataSelects, createFilters} from "./filters.js";
 import {Legend} from "./components/legend.js";
-import {DataSelector} from "./components/dataSelector";
+import {DataSelector} from "./components/dataSelector.js";
+import {CustomChart} from "./components/customChart.js";
 
 let data;
 let ctx;
@@ -17,11 +18,11 @@ function main() {
     chartContainer = document.getElementById('chart-container');
     filterContainer = document.getElementById('filter-container');
 
-    Promise.all([fetchData('data/data.json'), fetchData('data/static_data.json')])
-        .then(([data, staticData]) => {
-            chart = createChart(ctx, data["labels"], data["datasets"]);
-            dataSelector = new DataSelector(staticData, chart.callback, filterContainer);
-            legend = new Legend(staticData, chart, filterContainer, chart.callback);
+    Promise.all([fetchData('data/data_history.json'), fetchData('data/static_data.json')])
+        .then(([dataHistory, staticData]) => {
+            chart = new CustomChart(ctx);
+            dataSelector = new DataSelector(dataHistory, filterContainer, chart.onDatasetChange);
+            legend = new Legend(staticData, filterContainer, chart.onVisibilityChange);
         });
 }
 main();

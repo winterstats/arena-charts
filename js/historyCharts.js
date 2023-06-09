@@ -18,7 +18,7 @@ function main() {
     Promise.all([fetchData('data/data.json'), fetchData('data/static_data.json')])
         .then(([data, staticData]) => {
             chart = new CustomChart(ctx, data, staticData);
-            legend = new Legend(staticData, filterContainer, chart.OnVisibilityChange);
+            legend = new Legend(staticData, filterContainer, chart.onVisibilityChange);
         });
 }
 main();

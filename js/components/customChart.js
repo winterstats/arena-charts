@@ -14,7 +14,11 @@
         });
     }
     
-    OnVisibilityChange(specId) {
+    onVisibilityChange(specId, visibilityState, borderStyle) {
+        console.log(specId);
+    }
+    
+    onDatasetChange(labels, data, options) {
         
     }
 }

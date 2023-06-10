@@ -10,3 +10,7 @@ export function createImage(parent, src) {
     img.src = src;
     return img;
 }
+
+export function toTitleCase(text) {
+    return text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+}

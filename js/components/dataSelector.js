@@ -1,4 +1,4 @@
-﻿import {createAndAppendElement} from "../utils.js";
+﻿import {createAndAppendElement, toTitleCase} from "../utils.js";
 
 export class DataSelector {
     /**
@@ -7,15 +7,18 @@ export class DataSelector {
      * @param {HTMLDivElement} container
      * @param {function} onDataSetChange
      */
-    constructor(datasets, container, onDataSetChange) {
-        this.container = container;
+    constructor(datasets, lookupData, container, onDataSetChange) {
         this.datasets = datasets;
+        this.lookupData = lookupData;
+        this.container = container;
         this.onDataSetChange = onDataSetChange;
+        this.chartData =  {"labels": [], "datasets": []};
         this.selectors = [];
         this.selectorsOptions = {};
         this.selectorsStates = []
         this.initializeDataSelects();
         this.createDataSelectors();
+        this.initializeDatasets();
     }
 
     /**
@@ -26,7 +29,6 @@ export class DataSelector {
         let datasetLayer = this.datasets;
         
         while (!("labels" in datasetLayer) && (index < 10)) {
-            console.log(Object.keys(datasetLayer))
             this.UpdateSelectorLabelsAndStates(datasetLayer, index);
             datasetLayer = datasetLayer[this.selectors[index]][this.selectorsStates[index]];
             index++;
@@ -94,15 +96,23 @@ export class DataSelector {
      */
     changeDataSelect(index, value) {
         this.selectorsStates[index] = value;
+        this.updateChartData();
         this.notifyDatasetChange();
+    }
+
+    updateChartData() {
+        const dataset = this.getSelectedDataset();
+        this.chartData["labels"] = dataset["labels"];
+        for (const specId in this.chartData["datasets"]) {
+            this.chartData["datasets"][specId]["data"] = dataset["data"][specId];
+        }
     }
 
     /**
      * Notifies the chart that the dataset has changed.
      */
     notifyDatasetChange() {
-        const dataset = this.getSelectedDataset();
-        this.onDataSetChange(dataset["labels"], dataset["data"], dataset["options"]);
+        this.onDataSetChange(this.chartData);
     }
 
     /**
@@ -114,5 +124,21 @@ export class DataSelector {
         for (let i = 0; i < this.selectors.length; i++)
             dataset = dataset[this.selectors[i]][this.selectorsStates[i]];
         return dataset;
+    }
+
+    initializeDatasets() {
+        for (const [specId, specInfo] of Object.entries(this.lookupData["specInfo"])) {
+            const name = toTitleCase(`${specInfo["specName"]} ${specInfo["clsName"]}`);
+            const classId = specInfo["clsId"];
+            const color = this.lookupData["clsColors"][classId];
+            this.chartData["datasets"][specId] = {
+                "label": name, 
+                "data": [],
+                "borderColor": color,
+                "hidden": true
+            };
+        }
+        this.updateChartData();
+        this.notifyDatasetChange();
     }
 }

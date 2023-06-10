@@ -61,7 +61,7 @@ export class Legend {
         const specIcon = createAndAppendElement(classColumn, "div", `spec-${specId}`, "spec-icon", "inactive");
         specIcon.style.borderColor = this.lookupData["clsColors"][classId];
         const img = createImage(specIcon, `images/${specId}.png`);
-        this.specIconElementsById[specId] = img;
+        this.specIconElementsById[specId] = specIcon;
         img.addEventListener("click", () => this.toggleSpec(specId));
     }
     
@@ -127,7 +127,8 @@ export class Legend {
      * @param {number} index
      */
     addBorder(specId, element, index) {
-        const border = this.borderStyleStates[index];
+        const border = this.borderStyles[index];
+        this.borderStyleStates[specId] = border;
         element.classList.add(`border-${border}`)
     }
 
@@ -148,8 +149,13 @@ export class Legend {
      * @param {number} specId
      */
     notifyVisibilityChange(specId) {
-        const borderStyle = this.borderStyleStates[specId];
-        const visibleState = this.isVisibleStates[specId];
-        this.onVisibilityChange(specId, visibleState, borderStyle)
+        // Find all specs of the given class.
+        const classId = this.lookupData["specInfo"][specId]["clsId"];
+        const specIds = this.lookupData["clsSpecLists"][classId];
+        for (const specId of specIds) {
+            const borderStyle = this.borderStyleStates[specId];
+            const visibleState = this.isVisibleStates[specId];
+            this.onVisibilityChange(specId, visibleState, borderStyle)
+        }
     }
 }

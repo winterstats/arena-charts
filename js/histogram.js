@@ -1,6 +1,4 @@
 ﻿import {fetchData} from "./data.js";
-import {createChart} from "./chart.js";
-import {createDataSelects, createFilters} from "./filters.js";
 import {Legend} from "./components/legend.js";
 import {DataSelector} from "./components/dataSelector.js";
 import {CustomChart} from "./components/customChart.js";
@@ -20,8 +18,8 @@ function main() {
 
     Promise.all([fetchData('data/data_history.json'), fetchData('data/static_data.json')])
         .then(([dataHistory, staticData]) => {
-            chart = new CustomChart(ctx);
-            dataSelector = new DataSelector(dataHistory, filterContainer, chart.onDatasetChange);
+            chart = new CustomChart(ctx, null);
+            dataSelector = new DataSelector(dataHistory, staticData, filterContainer, chart.onDatasetChange);
             legend = new Legend(staticData, filterContainer, chart.onVisibilityChange);
         });
 }

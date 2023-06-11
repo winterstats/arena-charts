@@ -1,4 +1,4 @@
-﻿import {createAndAppendElement, toTitleCase} from "../utils.js";
+﻿import {createAndAppendElement, createPattern, toTitleCase} from "../utils/utils.js";
 
 export class DataSelector {
     /**
@@ -135,7 +135,10 @@ export class DataSelector {
                 "label": name, 
                 "data": [],
                 "borderColor": color,
-                "hidden": true
+                "backgroundColor": color,
+                "hidden": true,
+                "categoryPercentage": .9,
+                "barPercentage": .9,
             };
         }
         this.updateChartData();

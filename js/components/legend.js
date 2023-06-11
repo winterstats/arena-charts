@@ -1,4 +1,4 @@
-﻿import {createAndAppendElement, createImage} from "../utils.js";
+﻿import {createAndAppendElement, createImage} from "../utils/utils.js";
 
 export class Legend {
     /**
@@ -152,10 +152,15 @@ export class Legend {
         // Find all specs of the given class.
         const classId = this.lookupData["specInfo"][specId]["clsId"];
         const specIds = this.lookupData["clsSpecLists"][classId];
+        
+        const borderStyles = [];
+        const visibleStates = [];
         for (const specId of specIds) {
             const borderStyle = this.borderStyleStates[specId];
             const visibleState = this.isVisibleStates[specId];
-            this.onVisibilityChange(specId, visibleState, borderStyle)
+            borderStyles.push(borderStyle);
+            visibleStates.push(visibleState);
         }
+        this.onVisibilityChange(specIds, visibleStates, borderStyles);
     }
 }

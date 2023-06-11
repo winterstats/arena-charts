@@ -1,4 +1,6 @@
-﻿const lineTypes = {
+﻿import {createPattern} from "../utils/utils.js";
+
+const lineTypes = {
     "line": {"borderWidth": 2, "borderDash": [], "borderDashOffset": 0},
     "dash": {"borderWidth": 2, "borderDash": [15, 5], "borderDashOffset": 0},
     "dot": {"borderWidth": 2, "borderDash": [2, 3], "borderDashOffset": 0},
@@ -6,13 +8,13 @@
 }
 
 export class CustomChart {
-    constructor(ctx, options) {
-        this.chart = this.createChart(ctx, options);
+    constructor(ctx, type="line") {
+        this.chart = this.createChart(ctx, type);
     }
     
-    createChart(ctx, options) {
+    createChart(ctx, type) {
         return new Chart(ctx, {
-            type: 'line',
+            type: type,
             data: {
                 labels: [],
                 datasets: []
@@ -20,11 +22,12 @@ export class CustomChart {
             options: {
                 scales: {
                     x: {
-                        type: 'time',
-                        time: {
-                            unit: "day",
-                            tooltipFormat: "MMMM d"
-                        }
+                        // type: 'time',
+                        // time: {
+                        //     unit: "day",
+                        //     tooltipFormat: "MMMM d"
+                        // }
+                        
                     }
                 },
                 plugins: {
@@ -37,15 +40,33 @@ export class CustomChart {
         });
     }
     
-    onVisibilityChange = (specId, visibilityState, borderStyle) => {
-        Object.assign(this.chart.data.datasets[specId], lineTypes[borderStyle]);
-        if (visibilityState === this.chart.isDatasetVisible(specId)) return;
-        
-        if (visibilityState) {
-            //this.chart.update();
-            this.chart.show(specId);
-        } else {
-            this.chart.hide(specId);
+    onVisibilityChange = (specIds, visibilityStates, borderStyles) => {
+        this.updateBorders(specIds, borderStyles);
+        this.updateBackgroundStyles(specIds, borderStyles);
+        this.chart.update();
+        this.updateVisibility(specIds, visibilityStates);
+    }
+    
+    updateBorders(specIds, borderStyles) {
+        for (let i = 0; i < specIds.length; i++)
+            Object.assign(this.chart.data.datasets[specIds[i]], lineTypes[borderStyles[i]]);
+    }
+    
+    updateBackgroundStyles(specIds, borderStyles) {
+        for (let i = 0; i < specIds.length; i++) {
+            const color = this.chart.data.datasets[specIds[i]]["borderColor"];
+            this.chart.data.datasets[specIds[i]]["backgroundColor"] = createPattern(color, borderStyles[i]);
+        }
+    }
+    
+    updateVisibility(specIds, visibilityStates) {
+        for (let i = 0; i < specIds.length; i++) {
+            if (visibilityStates[i] === this.chart.isDatasetVisible(specIds[i])) 
+                continue;
+            else if (visibilityStates[i])
+                this.chart.show(specIds[i]);
+            else 
+                this.chart.hide(specIds[i]);
         }
     }
     

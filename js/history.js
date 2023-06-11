@@ -15,9 +15,9 @@ function main() {
     chartContainer = document.getElementById('chart-container');
     filterContainer = document.getElementById('filter-container');
 
-    Promise.all([fetchData('data/hist_data.json'), fetchData('data/static_data.json')])
+    Promise.all([fetchData('data/data_history.json'), fetchData('data/static_data.json')])
         .then(([dataHistory, staticData]) => {
-            chart = new CustomChart(ctx, "bar");
+            chart = new CustomChart(ctx);
             dataSelector = new DataSelector(dataHistory, staticData, filterContainer, chart.onDatasetChange);
             legend = new Legend(staticData, filterContainer, chart.onVisibilityChange);
         });

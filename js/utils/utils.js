@@ -1,20 +1,46 @@
-﻿export function createAndAppendElement(parent, tag, id, ...classes) {
+﻿/**
+ * Create an element with the given tag/id/classes and append it to the given parent.
+ * @param {HTMLElement} parent - The parent element to append the new element to.
+ * @param {string} tag - HTML tag of the element to create.
+ * @param {string} id - ID of the element to create.
+ * @param {string[]} classes - Classes of the element to create.
+ * @returns {HTMLElement} - The newly created element.
+ */
+export function createAndAppendElement(parent, tag, id, ...classes) {
     const element = document.createElement(tag);
     if (id) element.id = id;
     if (classes) element.classList.add(...classes);
     parent.appendChild(element);
     return element;
 }
+
+/**
+ * Create an img element with the given src and append it to the given parent.
+ * @param {HTMLElement} parent - The parent element to append the new element to.
+ * @param {string} src - The path to the image.
+ * @returns {HTMLImageElement} - The newly created image element.
+ */
 export function createImage(parent, src) {
     const img = createAndAppendElement(parent, "img", null, null);
     img.src = src;
     return img;
 }
 
+/**
+ * Returns the text with the first letter of each word capitalized.
+ * @param text - The text to convert.
+ * @returns {string} - The converted text.
+ */
 export function toTitleCase(text) {
     return text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
 }
 
+/**
+ * Creates a repeating striped background of the given color and style.
+ * @param {string} color - Color of the pattern in hex format.
+ * @param {string} style - The style of the pattern. Can be "line", "dash", "dot", or "dashdot".
+ * @returns {CanvasPattern}
+ */
 export function createPattern(color, style) {
     let multiplier;
     if (style === "line") {
@@ -46,6 +72,12 @@ export function createPattern(color, style) {
     return tempContext.createPattern(tempCanvas, "repeat");
 }
 
+/**
+ * Converts a hex color to an rgba color.
+ * @param {string} hex - The hex color to convert in the form #FFFFFF.
+ * @param {number} alpha - The transparency value (0-1).
+ * @returns {string} - The rgba color in the form "rgba(255, 255, 255, 1)".
+ */
 function hexToRGBA(hex, alpha) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);

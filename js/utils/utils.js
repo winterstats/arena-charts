@@ -1,13 +1,4 @@
-﻿export function fetchData(jsonFile){
-    return fetch(jsonFile)
-        .then(response => response.json())
-        .then(json_data => {
-            return json_data;
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
-
-export function createAndAppendElement(parent, tag, id, ...classes) {
+﻿export function createAndAppendElement(parent, tag, id, ...classes) {
     const element = document.createElement(tag);
     if (id) element.id = id;
     if (classes) element.classList.add(...classes);

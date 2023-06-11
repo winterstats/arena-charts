@@ -1,4 +1,4 @@
-﻿import {createAndAppendElement, createPattern, toTitleCase} from "../utils/utils.js";
+﻿import {createAndAppendElement, toTitleCase} from "../utils/utils.js";
 
 export class DataSelector {
     /**

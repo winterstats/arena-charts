@@ -1,5 +1,5 @@
-﻿import {createAndAppendElement} from "./utils/utils.js";
-import {fetchData} from "./utils/utils.js";
+﻿import {createAndAppendElement} from "../utils/utils.js";
+import {fetchData} from "../services/dataService.js";
 
 let data;
 

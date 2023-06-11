@@ -3,9 +3,9 @@
 export class Legend {
     /**
      * Creates a new Legend object.
-     * @param {object} lookupData
-     * @param {HTMLElement} container
-     * @param {function} onVisibilityChange
+     * @param {object} lookupData - The lookup data object containing ids, names, colors, etc.
+     * @param {HTMLElement} container - The container element the legend will be appended to.
+     * @param {function} onVisibilityChange - The function that will be called when the visibility of a class changes.
      */
     constructor(lookupData, container, onVisibilityChange) {
         this.lookupData = lookupData;
@@ -19,7 +19,7 @@ export class Legend {
     }
 
     /**
-     * Creates the legend.
+     * Creates the HTML elements for the legend including class and spec icons.
      */
     createLegend() {
         const filters = createAndAppendElement(this.container, "div", "filters", "row", "filter-box");
@@ -32,8 +32,8 @@ export class Legend {
 
     /**
      * Creates class icon element and adds it to the legend.
-     * @param {HTMLElement} classColumn
-     * @param {number} classId
+     * @param {HTMLElement} classColumn - The column the class and spec icons will be added to.
+     * @param {number} classId - The id of the class.
      */
     createClassIcon(classColumn, classId) {
         const classIcon = createAndAppendElement(classColumn, "div", null, "class-icon");
@@ -43,8 +43,8 @@ export class Legend {
 
     /**
      * Creates spec icons for a class.
-     * @param {HTMLElement} classColumn
-     * @param {number} classId
+     * @param {HTMLElement} classColumn - The column the spec icons will be added to.
+     * @param {number} classId - The id of the class.
      */
     createSpecIcons(classColumn, classId) {
         for (const specId of this.lookupData["clsSpecLists"][classId])
@@ -53,9 +53,9 @@ export class Legend {
 
     /**
      * Create spec icon element and add it to the legend.
-     * @param {HTMLElement} classColumn
-     * @param {number} specId
-     * @param {number} classId
+     * @param {HTMLElement} classColumn - The column the spec icon will be added to.
+     * @param {number} specId - The id of the spec.
+     * @param {number} classId - The id of the class.
      */
     createSpecIcon(classColumn, specId, classId) {
         const specIcon = createAndAppendElement(classColumn, "div", `spec-${specId}`, "spec-icon", "inactive");
@@ -79,7 +79,7 @@ export class Legend {
     }
 
     /**
-     * Toggles the visibility of a spec in the chart.
+     * Toggles the visibility, update its border style, and notify the chart of the change.
      * @param {number} specId - The id of the spec to toggle.
      */
     toggleSpec(specId) {
@@ -91,7 +91,7 @@ export class Legend {
 
     /**
      * Updates the border style of all the specs of a class.
-     * @param {number} specId
+     * @param {number} specId - The id of the spec to update the border style of.
      */
     updateBorder(specId) {
         // Find all specs of the given class.
@@ -112,19 +112,20 @@ export class Legend {
 
     /**
      * Removes all border styles from a spec.
-     * @param {number} specId
-     * @param {HTMLElement} element
+     * @param {number} specId - The id of the spec to remove the border styles from.
+     * @param {HTMLDivElement} element - Spec icon div to remove the border styles from.
      */
     removeBorders(specId, element) {
+        // Remove border style by removing all border classes it might have.
         for (const border of this.borderStyles)
             element.classList.remove(`border-${border}`);
     }
 
     /**
      * Adds a border style to a spec.
-     * @param {number} specId
-     * @param {HTMLElement} element
-     * @param {number} index
+     * @param {number} specId - The id of the spec to add the border style to.
+     * @param {HTMLDivElement} element - Spec icon div to add the border style to.
+     * @param {number} index - The index of the border style to add.
      */
     addBorder(specId, element, index) {
         const border = this.borderStyles[index];
@@ -134,7 +135,7 @@ export class Legend {
 
     /**
      * Updates the visibility of a spec by adding or removing the inactive class.
-     * @param {number} specId
+     * @param {number} specId - The id of the spec to update the visibility of.
      */
     updateElementVisibility(specId) {
         const element = this.specIconElementsById[specId]
@@ -146,13 +147,14 @@ export class Legend {
 
     /**
      * Notifies the chart that the visibility of a spec has changed.
-     * @param {number} specId
+     * @param {number} specId - The id of the spec that has changed visibility.
      */
     notifyVisibilityChange(specId) {
-        // Find all specs of the given class.
+        // Find all specs of the class of the given spec.
         const classId = this.lookupData["specInfo"][specId]["clsId"];
         const specIds = this.lookupData["clsSpecLists"][classId];
         
+        // Gather the border styles and visibility states of all the specs of the class.
         const borderStyles = [];
         const visibleStates = [];
         for (const specId of specIds) {
@@ -161,6 +163,7 @@ export class Legend {
             borderStyles.push(borderStyle);
             visibleStates.push(visibleState);
         }
+        // Notify the chart of the updated visibility and border styles of the given specIds.
         this.onVisibilityChange(specIds, visibleStates, borderStyles);
     }
 }

@@ -28,7 +28,7 @@ export function createTierLists(data, container,) {
 
 function main() {
     const container = document.getElementById("tier-list-container");
-    fetchData('data/tierlist.json').then(json_data => {
+    fetchData('data/tierlist_data.json').then(json_data => {
         data = json_data;
         createTierLists(json_data, container);
     });

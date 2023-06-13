@@ -8,11 +8,11 @@ const lineTypes = {
 }
 
 export class CustomChart {
-    constructor(ctx, type="line") {
-        this.chart = this.createChart(ctx, type);
+    constructor(ctx, type="line", pointRadius=3) {
+        this.chart = this.createChart(ctx, type, pointRadius);
     }
     
-    createChart(ctx, type) {
+    createChart(ctx, type, pointRadius) {
         return new Chart(ctx, {
             type: type,
             data: {
@@ -20,6 +20,11 @@ export class CustomChart {
                 datasets: []
             },
             options: {
+                elements: {
+                    point: {
+                        radius: pointRadius
+                    }
+                },
                 scales: {
                     x: {
                         // type: 'time',

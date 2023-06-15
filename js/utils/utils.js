@@ -2,8 +2,8 @@
  * Create an element with the given tag/id/classes and append it to the given parent.
  * @param {HTMLElement} parent - The parent element to append the new element to.
  * @param {string} tag - HTML tag of the element to create.
- * @param {string} id - ID of the element to create.
- * @param {string[]} classes - Classes of the element to create.
+ * @param {string?} id - ID of the element to create.
+ * @param {string[]?} classes - Classes of the element to create.
  * @returns {HTMLElement} - The newly created element.
  */
 export function createAndAppendElement(parent, tag, id, ...classes) {

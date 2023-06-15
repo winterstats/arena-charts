@@ -1,0 +1,27 @@
+﻿th {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+th>i {
+    float: right;
+    visibility: hidden;
+}
+
+th.highlight {
+    background-color: #1f25a3;
+    color: white;
+}
+
+th.highlight>i {
+    visibility: visible;
+    transition: .1s;
+}
+
+th[aria-sort="ascending"].highlight>i {
+    transform: rotate(180deg);
+}
+
+.highlight {
+    background-color: yellow;
+}

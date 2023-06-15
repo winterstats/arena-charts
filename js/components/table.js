@@ -58,7 +58,6 @@ export class Table {
     }
     
     sortTable(columnIndex) {
-        this.highlightColumn(columnIndex)
         
         const tableData = Array.from(this.tbody.rows,
             (row) => Array.from(
@@ -68,7 +67,9 @@ export class Table {
         const direction = this.reverse ? -1 : 1;
         
         tableData.sort((a, b) => {
-            return (parseInt(a[columnIndex]) - parseInt(b[columnIndex])) * direction;
+            if (isNaN(a[columnIndex]) || isNaN(b[columnIndex]))
+                return a[columnIndex].localeCompare(b[columnIndex]) * direction;
+            return (parseFloat(a[columnIndex]) - parseFloat(b[columnIndex])) * direction;
         });
         
         for (let i = 0; i < tableData.length; i++) 
@@ -76,11 +77,21 @@ export class Table {
                 this.tbody.rows[i].cells[j].innerText = tableData[i][j];
         
         this.sortedColumn = columnIndex;
+        
+        this.highlightColumn(columnIndex);
+        this.highlightAndAddIconToHeader(columnIndex);
     }
     
     highlightColumn(columnIndex) {
         for (const col of this.cols)
             col.classList.remove("highlight");
         this.cols[columnIndex].classList.add("highlight");
+    }
+    
+    highlightAndAddIconToHeader(columnIndex) {
+        for (const th of this.thead.rows[0].cells)
+            th.classList.remove("highlight");
+        this.thead.rows[0].cells[columnIndex].classList.add("highlight");
+        this.thead.rows[0].cells[columnIndex].ariaSort = this.reverse ? "descending" : "ascending";
     }
 }

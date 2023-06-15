@@ -1,0 +1,13 @@
+﻿th {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+th.highlight {
+    background-color: #1f25a3;
+    color: white;
+}
+.highlight {
+    background-color: yellow;
+}

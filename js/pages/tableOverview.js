@@ -5,7 +5,7 @@ let data;
 let table;
 
 function main() {
-    const container = document.getElementById("tier-list-container");
+    const container = document.getElementById("table-container");
     fetchData('data/table_overview_data.json').then(json_data => {
         data = json_data;
         table = new Table(data, container);

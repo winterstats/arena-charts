@@ -5,30 +5,27 @@
     <title>REAL DEAL</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calculator.css">
 </head>
 <body>
 <div class="container" id="calculator">
             <div class="row">
                 <select id="region-select" aria-label="Select Class">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="us">US</option>
+                    <option value="eu">EU</option>
                 </select>
-            <select id="cls-select" aria-label="Select Class">
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
             <select id="spec-select" aria-label="Select Spec">
-                <option value="1">1</option>
-                <option value="2">2</option>
             </select>
             </div>
             <div class="row">
                 <div class="form-outline">
-                    <input type="number" id="rating" class="form-control" placeholder="Rating"/>
+                    <input type="number" id="rating" class="form-control" aria-label="Your Rating" placeholder="Rating"/>
                 </div>
             </div>
             <div class="row">
                 <button id="calculate" class="btn btn-primary">Calculate</button>
+            </div>
+            <div id="results" class="row results">
             </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

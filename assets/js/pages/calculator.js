@@ -1,4 +1,4 @@
-﻿import {fetchJson} from "../services/dataService.js";
+﻿import {fetchJson} from "../services/data-service.js";
 
 let calculatorContainer;
 let staticData;
@@ -51,7 +51,7 @@ function convertRatingToPercentile() {
 function main() {
     calculatorContainer = document.getElementById('calculator');
 
-    Promise.all([fetchJson('assets/data/calculator/quantile_data.json'), fetchJson('assets/data/static/static_data.json')])
+    Promise.all([fetchJson('assets/data/calculator/quantile-data.json'), fetchJson('assets/data/static/static-data.json')])
         .then(([dataQuantile_, staticData_]) => {
             dataQuantile = dataQuantile_;
             staticData = staticData_;

@@ -1,5 +1,5 @@
 ﻿import {createAndAppendElement} from "../utils/utils.js";
-import {fetchJson} from "../services/dataService.js";
+import {fetchJson} from "../services/data-service.js";
 
 let data;
 
@@ -28,7 +28,7 @@ export function createTierLists(data, container,) {
 
 function main() {
     const container = document.getElementById("tier-list-container");
-    fetchJson('assets/data/tier-lists/tierlist_data.json').then(json_data => {
+    fetchJson('assets/data/tier-lists/tierlist-data.json').then(json_data => {
         data = json_data;
         createTierLists(json_data, container);
     });

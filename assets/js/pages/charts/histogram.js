@@ -1,7 +1,7 @@
-﻿import {fetchJson} from "../../services/dataService.js";
+﻿import {fetchJson} from "../../services/data-service.js";
 import {Legend} from "../../components/charts/legend.js";
-import {DataSelector} from "../../components/charts/dataSelector.js";
-import {CustomChart} from "../../components/charts/customChart.js";
+import {DataSelector} from "../../components/charts/data-selector.js";
+import {CustomChart} from "../../components/charts/custom-chart.js";
 
 let ctx;
 let chartContainer;
@@ -15,7 +15,7 @@ function main() {
     chartContainer = document.getElementById('chart-container');
     filterContainer = document.getElementById('filter-container');
 
-    Promise.all([fetchJson('assets/data/charts/histogram_data.json'), fetchJson('assets/data/static/static_data.json')])
+    Promise.all([fetchJson('assets/data/charts/histogram-data.json'), fetchJson('assets/data/static/static-data.json')])
         .then(([dataHistory, staticData]) => {
             chart = new CustomChart(ctx, "bar");
             dataSelector = new DataSelector(dataHistory, staticData, filterContainer, chart.onDatasetChange);

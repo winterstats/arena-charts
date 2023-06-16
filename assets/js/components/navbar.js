@@ -1,4 +1,4 @@
-﻿import {fetchText} from "../services/dataService.js";
+﻿import {fetchText} from "../services/data-service.js";
 
 
 function addHighlight() {

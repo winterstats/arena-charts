@@ -1,0 +1,58 @@
+﻿.sidebar {
+    position: fixed;
+    width: 250px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 24px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background: #3a444e;
+}
+.main {
+    position: relative;
+    margin-left: 250px;
+    padding: 24px 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 0.9375rem;
+    color: #8391a2;
+    font-family: "Nunito",sans-serif;
+    transition: 0.2s;
+}
+
+.navbar a:hover {
+    color: #bccee4;
+}
+
+.nav-item {
+    display: block;
+    width: 250px;
+}
+
+.nav-icon {
+    margin: 10px
+}
+
+.nav-link[aria-current="page"] {
+    color: #e1e4eb;
+}
+
+
+.side-nav-item {
+    padding: 10px 30px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.side-nav-item>span.menu-arrow {
+    text-align: right;
+    transition: transform .35s ease;
+    transform-origin: 0.5em 50%;
+}
+.side-nav-item[aria-expanded=true]>span.menu-arrow {
+    transform: rotate(90deg);
+}

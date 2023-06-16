@@ -1,0 +1,64 @@
+﻿.tier-list-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.tier-list-title {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 28px;
+    margin: 2px;
+}
+.tier-list-column {
+    padding: 20px
+}
+.row-tier {
+    text-align: center;
+    color: whitesmoke;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    margin: 5px;
+}
+.class-list {
+    text-align: center;
+    color: whitesmoke;
+    background: #1e1e1e;
+    margin: 2px;
+}
+.tier-letter {
+    color: whitesmoke;
+    font-size: 26px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.class-box {
+    box-sizing: content-box;
+    align-items: center;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
+.s-tier {
+    background: #6b0839;
+}
+.a-tier {
+    background: #eaa602;
+}
+.b-tier {
+    background: #3b8b02;
+}
+.c-tier {
+    background: #0b4bc0;
+}
+.d-tier {
+    background: #324882;
+}
+.f-tier {
+    background: #64317d;
+}
+.warrior {
+    background-color: saddlebrown;
+}

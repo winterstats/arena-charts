@@ -15,7 +15,7 @@ function main() {
     chartContainer = document.getElementById('chart-container');
     filterContainer = document.getElementById('filter-container');
 
-    Promise.all([fetchJson('data/histogram_data.json'), fetchJson('data/static_data.json')])
+    Promise.all([fetchJson('assets/data/charts/histogram_data.json'), fetchJson('assets/data/static/static_data.json')])
         .then(([dataHistory, staticData]) => {
             chart = new CustomChart(ctx, "bar");
             dataSelector = new DataSelector(dataHistory, staticData, filterContainer, chart.onDatasetChange);

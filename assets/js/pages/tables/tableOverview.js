@@ -6,7 +6,7 @@ let table;
 
 function main() {
     const container = document.getElementById("table-container");
-    fetchJson('../assets/data/tables/table_overview_data.json').then(json_data => {
+    fetchJson('assets/data/tables/table_overview_data.json').then(json_data => {
         data = json_data;
         table = new Table(data, container);
     });

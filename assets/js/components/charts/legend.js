@@ -37,7 +37,7 @@ export class Legend {
      */
     createClassIcon(classColumn, classId) {
         const classIcon = createAndAppendElement(classColumn, "div", null, "class-icon");
-        const img = createImage(classIcon, `images/${this.lookupData["clsIds"][classId]}.png`);
+        const img = createImage(classIcon, `assets/images/${this.lookupData["clsIds"][classId]}.png`);
         img.addEventListener("click", () => this.toggleClass(classId));
     }
 
@@ -60,7 +60,7 @@ export class Legend {
     createSpecIcon(classColumn, specId, classId) {
         const specIcon = createAndAppendElement(classColumn, "div", `spec-${specId}`, "spec-icon", "inactive");
         specIcon.style.borderColor = this.lookupData["clsColors"][classId];
-        const img = createImage(specIcon, `images/${specId}.png`);
+        const img = createImage(specIcon, `assets/images/${specId}.png`);
         this.specIconElementsById[specId] = specIcon;
         img.addEventListener("click", () => this.toggleSpec(specId));
     }

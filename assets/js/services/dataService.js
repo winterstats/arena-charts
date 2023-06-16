@@ -1,5 +1,5 @@
 ﻿export function fetchJson(jsonFile){
-    return fetch(relativePath(jsonFile))
+    return fetch(jsonFile)
         .then(response => response.json())
         .then(json_data => {
             return json_data;
@@ -8,7 +8,7 @@
 }
 
 export function fetchText(textFile){
-    return fetch(relativePath(textFile))
+    return fetch(textFile)
         .then(response => response.text())
         .then(textData => {
             return textData;

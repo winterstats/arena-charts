@@ -24,7 +24,7 @@ export class Table {
     }
     
     createTable() {
-        this.table = createAndAppendElement(this.container, "table", null, "table", "table-response", "table-striped", "table-box", "table-fixedheader", "table-borderless");
+        this.table = createAndAppendElement(this.container, "table", null, "table-striped");
         this.createTableColGroup();
         this.createTableHead();
         this.createTableBody();

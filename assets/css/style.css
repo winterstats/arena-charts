@@ -1,5 +1,52 @@
-﻿body {
-    background: #1a1a1a;
+﻿:root {
+    --body-bg: #343a40;
+    --body-color: #aab8c5;
+    --body-emphasis: #dee2e6;
+    
+    --bg-secondary: #37404a;
+    --bg-tertiary: #3a444e;
+    --bg-light: #464f5b;
+    
+    --primary: #727cf5;
+    --primary-hover: #6973e3;
+    
+    --danger: #fa5c7c;
+    --danger-hover: #e75573;
+    
+    --success: #0acf97;
+    --success-hover: #09bf8c;
+    
+    --btn-color: #fff;
+    
+    
+    
+    --font-family-sans-serif: "Nunito", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-size: 0.9em;
+}
+
+body {
+    background: var(--body-bg);
+    font-size: var(--font-size);
+    font-family: var(--font-family-sans-serif);
+    font-weight: 400;
+}
+
+.btn-check:checked+.btn-outline-primary{
+    background-color: var(--primary);
+    border-color: var(--primary-hover);
+}
+
+.btn-outline-primary {
+    color: var(--btn-color);
+    background-color: var(--bg-light);
+    border-color: var(--bg-light);
+}
+
+.btn-outline-primary:hover {
+    color: var(--btn-color); !important
+    background-color: var(--bg-secondary); !important;
+    border-color: var(--bg-secondary); !important;
 }
 
 img{
@@ -43,4 +90,9 @@ img{
 .inactive {
     filter: grayscale(100%);
     border-bottom: 3px solid rgba(0,0,0,0);
+}
+
+.btn-outline {
+    border: 1px solid #fff;
+    background-color: #727cf5;
 }

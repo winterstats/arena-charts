@@ -40,13 +40,19 @@ body {
 .btn-outline-primary {
     color: var(--btn-color);
     background-color: var(--bg-light);
-    border-color: var(--bg-light);
+    border-color: var(--primary-hover);
 }
 
-.btn-outline-primary:hover {
-    color: var(--btn-color); !important
-    background-color: var(--bg-secondary); !important;
-    border-color: var(--bg-secondary); !important;
+.btn-check:not(:checked)+.btn-outline-primary:hover {
+    color: var(--btn-color) !important;
+    background-color: var(--bg-light) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.page-title {
+    font-size: 1.5em;
+    color: var(--body-color);
+    padding-bottom: .7em;
 }
 
 img{

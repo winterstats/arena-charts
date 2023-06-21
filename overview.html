@@ -17,40 +17,34 @@
 <div class="content main">
     <div class="container-fluid">
         <div class="row">
-            <h1>Table Overview</h1>
+            <span class="page-title">Table Overview</span>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-xl-3">
-                                <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
-                                    <div class="col-auto">
-                                        <label for="inputPassword2" class="visually-hidden">Search</label>
-                                        <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
-
-                                    </div>
-                                </form>
+                        <div class="row row-cols-auto filter-bar">
+                            <div class="col content-fit">
+                                <label for="search-filter" class="visually-hidden">Search</label>
+                                <input type="search" class="form-control" id="search-filter" placeholder="Search...">
                             </div>
-                            <div class="col-xl-5">
-                                        <span class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                            <label class="btn btn-outline-primary" for="btnradio1">US</label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="btnradio2">EU</label>
-                                        </span>
+                            <div class="col content-fit">
+                                <span class="btn-group" role="group" aria-label="Choose region">
+                                    <input type="radio" class="btn-check" name="region" id="us-button" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="us-button">US</label>
+                                    <input type="radio" class="btn-check" name="region" id="eu-button" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="eu-button">EU</label>
+                                </span>
                             </div>
-                            <div class="col-xl-4">
-                                <span class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="checkbox" class="btn-check" id="btn-check-1-outlined" checked autocomplete="off">
-                                        <label class="btn btn-outline" for="btn-check-1-outlined">Damage</label><br>
-                                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
-                                        <label class="btn btn-outline" for="btn-check-2-outlined">Healers</label><br>
-                                        <input type="checkbox" class="btn-check" id="btn-check-3-outlined" checked autocomplete="off">
-                                        <label class="btn btn-outline" for="btn-check-3-outlined">Tanks</label>
-                                    </span>
+                            <div class="col content-fit">
+                                <span class="btn-group" role="group" aria-label="Toggle display of specific roles">
+                                        <input type="checkbox" class="btn-check" id="damage-button" checked autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="damage-button">Damage</label><br>
+                                        <input type="checkbox" class="btn-check" id="healers-button" checked autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="healers-button">Healers</label><br>
+                                        <input type="checkbox" class="btn-check" id="tanks-button" checked autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="tanks-button">Tanks</label>
+                                </span>
                             </div>
                         </div>
                         <div id="table-container">

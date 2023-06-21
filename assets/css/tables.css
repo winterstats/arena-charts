@@ -53,3 +53,7 @@ th[aria-sort="ascending"].highlight>i {
 td {
     padding: 0.75em;
 }
+
+.filter-bar {
+    margin-bottom: 1em;
+}

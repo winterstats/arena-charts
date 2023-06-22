@@ -6,9 +6,9 @@ let table;
 
 function main() {
     const container = document.getElementById("table-container");
-    fetchJson('assets/data/tables/table-overview-data.json').then(json_data => {
-        data = json_data;
-        table = new Table(data, container);
+    Promise.all([fetchJson('assets/data/tables/table-overview-data.json'), fetchJson('assets/data/static/static-data.json')])
+        .then(([tableData, staticData]) => {
+        table = new Table(tableData, staticData, container);
     });
 }
 

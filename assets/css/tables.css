@@ -4,6 +4,11 @@
     padding: 1em;
     z-index: 0;
 }
+
+th.ignore {
+    cursor: default;
+}
+
 th>i {
     float: right;
     visibility: hidden;

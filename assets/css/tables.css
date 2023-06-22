@@ -1,15 +1,22 @@
 ﻿th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #464f5b;
     cursor: pointer;
+    padding: 1em;
+    z-index: 0;
 }
+
+th.ignore {
+    cursor: default;
+}
+
 th>i {
     float: right;
     visibility: hidden;
 }
 
 th.highlight {
-    background-color: #1f25a3;
+    background-color: var(--success);
+    font-weight: 800;
     color: white;
 }
 
@@ -23,5 +30,35 @@ th[aria-sort="ascending"].highlight>i {
 }
 
 .highlight {
-    background-color: yellow;
+    background-color: rgba(200, 200, 200, 0.04);
+}
+
+.card-body {
+    color: var(--body-color);
+    border-radius: 5px;
+    padding: 1.5em;
+    flex: 1 1 auto;
+    background: #37404a;
+}
+
+.card {
+    background: none;
+    border: none;
+    margin-bottom: 1em;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table-striped {
+    width: 100%;
+}
+
+td {
+    padding: 0.75em;
+}
+
+.filter-bar {
+    margin-bottom: 1em;
 }

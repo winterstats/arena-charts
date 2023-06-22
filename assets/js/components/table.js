@@ -1,8 +1,11 @@
 ﻿import {createAndAppendElement} from "../utils/utils.js";
 
+const IGNORE_COLUMNS = ["Class", "Spec"]
+
 export class Table {
-    constructor(data, container) {
+    constructor(data, lookupData, container) {
         this.data = data;
+        this.lookupData = lookupData
         this.container = container;
 
         /** @type {HTMLTableElement} */
@@ -19,12 +22,40 @@ export class Table {
         this.sortedColumn = 2;
         this.reverse = false;
         
+        this.region = "us";
+        this.roles = ["1", "2", "3"];
+        
+        this.setupButtons();
         this.createTable();
         this.sortTable(this.sortedColumn);
     }
     
+    setupButtons() {
+        const regionButton = document.getElementById("region-select");
+        const roleButtons = document.getElementById("role-select");
+        regionButton.addEventListener("change", (event) => this.onRegionChange(event.target.value));
+        roleButtons.addEventListener("change", (event) => this.onRoleChange(event.target.value, event.target.checked));
+    }
+    
+    onRegionChange(region) {
+        this.region = region;
+        this.createTableBody();
+        this.reverse = false;
+        this.sortTable(this.sortedColumn);
+    }
+    
+    onRoleChange(role, checked) {
+        if (checked)
+            this.roles.push(role);
+        else
+            this.roles.splice(this.roles.indexOf(role), 1);
+        this.createTableBody();
+        this.reverse = !this.reverse
+        this.sortTable(this.sortedColumn);
+    }
+    
     createTable() {
-        this.table = createAndAppendElement(this.container, "table", null, "table", "table-response", "table-striped", "table-box", "table-fixedheader", "table-borderless");
+        this.table = createAndAppendElement(this.container, "table", null, "table-striped");
         this.createTableColGroup();
         this.createTableHead();
         this.createTableBody();
@@ -41,16 +72,30 @@ export class Table {
         const tr = createAndAppendElement(this.thead, "tr");
         for (const head of this.data["head"]) {
             const th = createAndAppendElement(tr, "th");
+            if (IGNORE_COLUMNS.includes(head)) {
+                th.classList.add("ignore");
+                th.innerHTML = head;
+                continue;
+            }
             th.addEventListener("click", () => this.sortTable(this.data["head"].indexOf(head)));
             th.innerHTML = `${head} <i class="bi bi-caret-down-fill"></i>`;
         }
     }
     
     createTableBody() {
+        if (this.tbody !== null)
+            this.table.removeChild(this.tbody);
         this.tbody = createAndAppendElement(this.table, "tbody");
-        for (const row of this.data["body"]) {
+        let roleIds =  [];
+        for (const role of this.roles)
+            roleIds = roleIds.concat(this.lookupData["roleLists"][role]);
+        console.log(this.roles, roleIds);
+        for (const row in this.data["body"][this.region]) {
+            if (!roleIds.includes(row)) 
+                continue
+            
             const tr = createAndAppendElement(this.tbody, "tr");
-            for (const cell of row) {
+            for (const cell of this.data["body"][this.region][row]) {
                 const td = createAndAppendElement(tr, "td");
                 td.innerText = cell;
             }
@@ -58,7 +103,6 @@ export class Table {
     }
     
     sortTable(columnIndex) {
-        
         const tableData = Array.from(this.tbody.rows,
             (row) => Array.from(
                 row.cells, (cell) => cell.innerText));

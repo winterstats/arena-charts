@@ -5,7 +5,6 @@ function addHighlight() {
     const path = window.location.pathname.split("/").pop();
     const links = document.querySelectorAll(".nav-link");
     for (let i = 0; i < links.length; i++) {
-        console.log(path,  links[i].getAttribute("href"));
         if (links[i].getAttribute("href").split("/").pop() === path) {
             links[i].ariaCurrent = "page";
         }

@@ -5,24 +5,24 @@
 }
 .tier-list-title {
     text-align: center;
-    color: whitesmoke;
+    color: white;
     font-size: 28px;
-    margin: 2px;
+    padding-left: 1em;
+    background: #6b0839;
+    border-radius: 10px 10px 0px 0px;
 }
 .tier-list-column {
-    padding: 20px
+    padding: 2.5em;
 }
 .row-tier {
     text-align: center;
-    color: whitesmoke;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     margin: 5px;
 }
 .class-list {
     text-align: center;
-    color: whitesmoke;
-    background: #1e1e1e;
+    background: var(--body-bg);
     margin: 2px;
 }
 .tier-letter {
@@ -38,8 +38,8 @@
     border-radius: 5px;
     margin: 5px;
     padding: 0;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 .s-tier {
     background: #6b0839;
@@ -58,7 +58,4 @@
 }
 .f-tier {
     background: #64317d;
-}
-.warrior {
-    background-color: saddlebrown;
 }

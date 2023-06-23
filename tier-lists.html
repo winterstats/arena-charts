@@ -14,7 +14,38 @@
 <div id="navbar-container">
 </div>
 <div class="content main">
-    <div id="tier-list-container" class="container-fluid col-12"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <span class="page-title">Tier Lists</span>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row row-cols-auto filter-bar">
+                            <div class="col content-fit">
+                                <form class="btn-group" id="region-select" role="form" aria-label="Choose region">
+                                    <input type="radio" class="btn-check" name="region" value="us" id="us-button" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="us-button">US</label>
+                                    <input type="radio" class="btn-check" name="region" value="eu" id="eu-button" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="eu-button">EU</label>
+                                </form>
+                            </div>
+                            <div class="col content-fit">
+                                <form class="btn-group" id="sample-select" role="form" aria-label="Choose region">
+                                    <input type="radio" class="btn-check" name="sample" value="average" id="average-sample" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="average-sample">Average Players</label>
+                                    <input type="radio" class="btn-check" name="sample" value="top" id="top-sample" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="top-sample">Top 10% of Players</label>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="tier-list-container" class="container-fluid col-12"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="module" src="assets/js/components/navbar.js"></script>
 <script type="module" src="assets/js/pages/tier-list.js"></script>

@@ -33,20 +33,6 @@ th[aria-sort="ascending"].highlight>i {
     background-color: rgba(200, 200, 200, 0.04);
 }
 
-.card-body {
-    color: var(--body-color);
-    border-radius: 5px;
-    padding: 1.5em;
-    flex: 1 1 auto;
-    background: #37404a;
-}
-
-.card {
-    background: none;
-    border: none;
-    margin-bottom: 1em;
-}
-
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(255, 255, 255, 0.02);
 }
@@ -57,8 +43,4 @@ th[aria-sort="ascending"].highlight>i {
 
 td {
     padding: 0.75em;
-}
-
-.filter-bar {
-    margin-bottom: 1em;
 }

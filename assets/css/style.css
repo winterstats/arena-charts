@@ -54,6 +54,23 @@ body {
     color: var(--body-color);
     padding-bottom: .7em;
 }
+.card-body {
+    color: var(--body-color);
+    border-radius: 5px;
+    padding: 1.5em;
+    flex: 1 1 auto;
+    background: #37404a;
+}
+
+.card {
+    background: none;
+    border: none;
+    margin-bottom: 1em;
+}
+
+.filter-bar {
+    margin-bottom: 1em;
+}
 
 img{
     width: inherit;

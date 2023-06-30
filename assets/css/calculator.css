@@ -23,6 +23,29 @@ input[type=number] {
     color: #77b4ea;
 }
 
+.spec-select {
+    color: var(--body-color);
+    background: var(--bg-tertiary);
+    border-color: var(--bg-light);
+}
+
+input.rating-input {
+    color: var(--body-emphasis);
+    background-color: var(--bg-tertiary);
+    border-color: var(--bg-light);
+}
+
+input.rating-input:focus {
+    color: var(--body-emphasis);
+     background-color: var(--bg-tertiary);
+     border-color: var(--bg-light);
+ }
+
+input.rating-input::placeholder {
+    color: var(--body-color);
+    opacity: 1;
+}
+
 #calculator {
     width: 500px;
 }

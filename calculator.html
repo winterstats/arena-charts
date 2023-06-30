@@ -14,26 +14,52 @@
 <div id="navbar-container">
 </div>
 <div class="content main">
-    <div class="container" id="calculator">
+    <div class="container-fluid">
         <div class="row">
-            <select id="region-select" aria-label="Select Class">
-                <option value="us">US</option>
-                <option value="eu">EU</option>
-            </select>
-            <select id="spec-select" aria-label="Select Spec">
-            </select>
+            <span class="page-title">Tier Lists</span>
         </div>
         <div class="row">
-            <div class="form-outline">
-                <input type="number" id="rating" class="form-control" aria-label="Your Rating" placeholder="Rating"/>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container" id="calculator">
+                            <div class="row">
+                                <h3>Calculate Your Percentile</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col content-fit">
+                                    <form class="btn-group" id="region-select" role="form" aria-label="Choose region">
+                                        <input type="radio" class="btn-check" name="region" value="us" id="us-button" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="us-button">US</label>
+                                        <input type="radio" class="btn-check" name="region" value="eu" id="eu-button" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="eu-button">EU</label>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col content-fit">
+                                    <select class="form-select spec-select" id="spec-select" aria-label="Select Spec">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-outline">
+                                    <input type="number" id="rating" class="form-control rating-input" aria-label="Your Rating" placeholder="Rating"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="calculate" class="btn btn-primary">Calculate</button>
+                            </div>
+                            <div id="results" class="row results">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <button id="calculate" class="btn btn-primary">Calculate</button>
-        </div>
-        <div id="results" class="row results">
-        </div>
     </div>
+</div>
+<div class="content main">
 </div>
 <script type="module" src="assets/js/components/navbar.js"></script>
 <script type="module" src="assets/js/pages/calculator.js"></script>

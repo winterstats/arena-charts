@@ -11,8 +11,8 @@ export class Legend {
         this.lookupData = lookupData;
         this.container = container;
         this.onVisibilityChange = onVisibilityChange
-        this.isVisibleStates = Array(38).fill(false);
-        this.borderStyleStates = Array(38).fill("line");
+        this.isVisibleStates = Array(39).fill(false); // TODO: Get number of specs from lookup data.
+        this.borderStyleStates = Array(39).fill("line");
         this.specIconElementsById = []
         this.borderStyles = ["line", "dash", "dot", "dashdot"];
         this.createLegend();
@@ -22,9 +22,9 @@ export class Legend {
      * Creates the HTML elements for the legend including class and spec icons.
      */
     createLegend() {
-        const filters = createAndAppendElement(this.container, "div", "filters", "row", "filter-box");
+        const filters = createAndAppendElement(this.container, "div", "filters", "row filter-box");
         for (const classId in this.lookupData["clsIds"]) {
-            const classColumn = createAndAppendElement(filters, "div", null, "col", "class-column");
+            const classColumn = createAndAppendElement(filters, "div", null, "class-column");
             this.createClassIcon(classColumn, classId);
             this.createSpecIcons(classColumn, classId);
         }
@@ -58,7 +58,7 @@ export class Legend {
      * @param {number} classId - The id of the class.
      */
     createSpecIcon(classColumn, specId, classId) {
-        const specIcon = createAndAppendElement(classColumn, "div", `spec-${specId}`, "spec-icon", "inactive");
+        const specIcon = createAndAppendElement(classColumn, "div", `spec-${specId}`, "spec-icon inactive");
         specIcon.style.borderColor = this.lookupData["clsColors"][classId];
         const img = createImage(specIcon, `assets/images/${specId}.png`);
         this.specIconElementsById[specId] = specIcon;
@@ -153,6 +153,7 @@ export class Legend {
         // Find all specs of the class of the given spec.
         const classId = this.lookupData["specInfo"][specId]["clsId"];
         const specIds = this.lookupData["clsSpecLists"][classId];
+        console.log(classId, specIds);
         
         // Gather the border styles and visibility states of all the specs of the class.
         const borderStyles = [];
@@ -160,6 +161,7 @@ export class Legend {
         for (const specId of specIds) {
             const borderStyle = this.borderStyleStates[specId];
             const visibleState = this.isVisibleStates[specId];
+            console.log(this.borderStyleStates);
             borderStyles.push(borderStyle);
             visibleStates.push(visibleState);
         }

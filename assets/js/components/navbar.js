@@ -7,6 +7,13 @@ function addHighlight() {
     for (let i = 0; i < links.length; i++) {
         if (links[i].getAttribute("href").split("/").pop() === path) {
             links[i].ariaCurrent = "page";
+            // const div = links[i].closest("div");
+            // if (div.classList.contains("collapse")) {
+            //     const category = div.previousElementSibling;
+            //     category.classList.remove("collapsed");
+            //     category.setAttribute("aria-expanded", "true");
+            //     const collapse = new bootstrap.Collapse(div, { toggle: true })
+            // }
         }
     }
 }

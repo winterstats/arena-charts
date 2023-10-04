@@ -8,7 +8,7 @@ const lineTypes = {
 }
 
 export class CustomChart {
-    constructor(ctx, type="line", pointRadius=3) {
+    constructor(ctx, type="line", pointRadius=1) {
         this.chart = this.createChart(ctx, type, pointRadius);
     }
     
@@ -22,18 +22,44 @@ export class CustomChart {
             options: {
                 elements: {
                     point: {
-                        radius: pointRadius
+                        radius: 10,
+                        hoverRadius: 15,
                     }
                 },
                 scales: {
                     x: {
-                        // type: 'time',
-                        // time: {
-                        //     unit: "day",
-                        //     tooltipFormat: "MMMM d"
-                        // }
-                        
-                    }
+                        type: "time",
+                        time: {
+                            displayFormats: {
+                                month: 'MMM',
+                            },
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 10,
+                            color: "#f2f2f2",
+                        },
+                        grid: {
+                            display: true,
+                            color: "rgba(255, 255, 255, 0.05)",
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: "#f2f2f2",
+                            callback: function (value) {
+                                if (value <= 1)
+                                    return `${(value*100).toFixed(1)}%`;
+                                return `${value}`
+                            },
+                            font: {
+                                size: 15,
+                            },
+                        },
+                        grid: {
+                            color: "rgba(255, 255, 255, 0.1)",
+                        }
+                    },
                 },
                 plugins: {
                     legend: {
@@ -61,6 +87,7 @@ export class CustomChart {
         for (let i = 0; i < specIds.length; i++) {
             const color = this.chart.data.datasets[specIds[i]]["borderColor"];
             this.chart.data.datasets[specIds[i]]["backgroundColor"] = createPattern(color, borderStyles[i]);
+            this.chart.data.datasets[specIds[i]]["borderWidth"] = 3;
         }
     }
     

@@ -5,6 +5,7 @@ import {CustomChart} from "../../components/charts/custom-chart.js";
 
 let ctx;
 let chartContainer;
+let categoryContainer;
 let filterContainer;
 let chart;
 let legend;
@@ -13,12 +14,13 @@ let dataSelector;
 function main() {
     ctx = document.getElementById('myChart');
     chartContainer = document.getElementById('chart-container');
+    categoryContainer = document.getElementById('category-container');
     filterContainer = document.getElementById('filter-container');
 
     Promise.all([fetchJson('assets/data/charts/histogram-data.json'), fetchJson('assets/data/static/static-data.json')])
         .then(([dataHistory, staticData]) => {
             chart = new CustomChart(ctx, "bar");
-            dataSelector = new DataSelector(dataHistory, staticData, filterContainer, chart.onDatasetChange);
+            dataSelector = new DataSelector(dataHistory, staticData, categoryContainer, chart.onDatasetChange);
             legend = new Legend(staticData, filterContainer, chart.onVisibilityChange);
         });
 }

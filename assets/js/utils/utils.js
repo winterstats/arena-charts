@@ -3,15 +3,40 @@
  * @param {HTMLElement} parent - The parent element to append the new element to.
  * @param {string} tag - HTML tag of the element to create.
  * @param {string?} id - ID of the element to create.
- * @param {string[]?} classes - Classes of the element to create.
+ * @param {string?} classes - Classes of the element to create.
  * @returns {HTMLElement} - The newly created element.
  */
-export function createAndAppendElement(parent, tag, id, ...classes) {
+export function createAndAppendElement(parent, tag, id, classes) {
     const element = document.createElement(tag);
     if (id) element.id = id;
-    if (classes) element.classList.add(...classes);
+    if (classes) element.classList.add(...classes.split(" "));
     parent.appendChild(element);
     return element;
+}
+
+export function createForm(parent, category, labels) {
+    const form = createAndAppendElement(parent, "form", `${category}-select`, "btn-group");
+    form.role = "form";
+    form.ariaLabel = `Select ${category}`;
+    
+    for (const label of labels)
+        createFormButton(form, category, label);
+    form.firstChild.checked = true;
+    return form;
+}
+
+function createFormButton(form, category, label) {
+    const input = createAndAppendElement(form, "input", `${label}-button`, "btn-check");
+    input.type = "radio";
+    input.name = category;
+    input.setAttribute("autocomplete", "off");
+    input.value = label;
+    const labelElement = createAndAppendElement(form, "label", null, "btn btn-outline-primary");
+    labelElement.setAttribute("for", `${label}-button`);
+    if (label.length > 3)
+        labelElement.textContent = label.charAt(0).toUpperCase() + label.slice(1);
+    else
+        labelElement.textContent = label.toUpperCase();
 }
 
 /**
@@ -68,7 +93,6 @@ export function createPattern(color, style) {
     tempContext.fillRect(0, 0, width, height);
     tempContext.fillStyle = color; // Replace 'color2' with the second color for the stripes
     tempContext.fillRect(0, stripeHeight, width, height);
-    
     return tempContext.createPattern(tempCanvas, "repeat");
 }
 

@@ -1,4 +1,4 @@
-﻿import {createAndAppendElement, toTitleCase} from "../../utils/utils.js";
+﻿import {createAndAppendElement, createForm, toTitleCase} from "../../utils/utils.js";
 
 // Space between bars.
 const CATEGORY_PERCENTAGE = .9;
@@ -76,9 +76,13 @@ export class DataSelector {
      * @param {number} index - The index of the data selector.
      */
     createDataSelect(category, index) {
-        const select = createAndAppendElement(this.container, "select", `${category}-select`, "form-select");
-        this.createDataSelectOptions(select, category);
-        select.addEventListener("change", () => this.changeDataSelect(index, select.value));
+        const div = createAndAppendElement(this.container, "div", null, "col content-fit");
+        const labels = this.selectorsOptions[category];
+        const form = createForm(div, category, labels);
+        form.addEventListener("change", (e) => this.changeDataSelect(index, e.target.value));
+        // const select = createAndAppendElement(this.container, "select", `${category}-select`, "form-select");
+        // this.createDataSelectOptions(select, category);
+        // select.addEventListener("change", () => this.changeDataSelect(index, select.value));
     }
 
     /**
@@ -109,6 +113,7 @@ export class DataSelector {
      * @param {string} value - The value to change the data select to.
      */
     changeDataSelect(index, value) {
+        console.log(index,  value);
         this.selectorsStates[index] = value;
         this.updateChartData();
         this.notifyDatasetChange();
@@ -175,7 +180,8 @@ export class DataSelector {
             "backgroundColor": color,
             "hidden": true,
             "categoryPercentage": CATEGORY_PERCENTAGE,
-            "barPercentage": BAR_PERCENTAGE
+            "barPercentage": BAR_PERCENTAGE,
+            "pointStyle": false,
         };
     }
 }
